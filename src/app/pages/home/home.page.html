@@ -1,0 +1,35 @@
+<ion-header color="dark">
+  <ion-toolbar color="dark">
+    <ion-title>Tienda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <ion-grid fixed>
+
+    <ion-row>
+
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs ="12" *ngFor="let producto of productos">
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{producto.title}}</ion-card-title>
+          </ion-card-header>
+
+          <img [src]="producto.image">
+
+          <ion-card-content>
+            <div>{{producto.price}}</div>
+            
+          </ion-card-content>
+          <ion-button class="color-primary" expand="block" (click)="agregarProducto(producto)">Agregar producto</ion-button>
+        </ion-card>
+        
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+  <ion-button color="success" expand="block" (click)="finalizarPedido()">Finalizar pedido</ion-button>
+</ion-content>
