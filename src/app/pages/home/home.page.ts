@@ -13,6 +13,7 @@ export class HomePage implements OnInit {
   productos : Producto[] = [];
 
   listaProductos = "";
+  importeTotal = 0;
 
   constructor(private productoService: ProductoService, private toastController: ToastController) { }
 
@@ -37,6 +38,8 @@ export class HomePage implements OnInit {
 
   agregarProducto(producto: Producto){
 
+    this.importeTotal += producto.price;
+
     this.listaProductos += JSON.stringify("Producto: " + producto.title + " Precio: " + producto.price) + "\n";
 
     this.presentToast('Se agrego al carrito');
@@ -44,11 +47,13 @@ export class HomePage implements OnInit {
   }
 
   finalizarPedido(){
-    
+      
+    this.listaProductos += "Total: " + this.importeTotal;
+
     window.open(`https://wa.me/+5493825520391?text=${encodeURIComponent(this.listaProductos)}`);
 
     this.listaProductos = "";
-
+    this.importeTotal = 0;
   }
 
 }
